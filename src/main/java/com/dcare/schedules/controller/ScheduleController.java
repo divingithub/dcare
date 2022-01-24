@@ -1,5 +1,8 @@
 package com.dcare.schedules.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,17 +12,23 @@ import org.springframework.web.bind.annotation.RestController;
 import com.dcare.schedules.model.ScheduleModel;
 import com.dcare.schedules.repository.SchedulerRepository;
 
-import lombok.RequiredArgsConstructor;
+//import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 @RestController
 @RequestMapping("api/v1/schedule")
 public class ScheduleController {
 	
 	private final SchedulerRepository schedulerRepository;
 	
+	public ScheduleController(SchedulerRepository schedulerRepository) {
+		super();
+		this.schedulerRepository = schedulerRepository;
+	}
+
+	
 	 @GetMapping(produces = { "application/json" }, path = "schedule")
-	 public ResponseEntity<ScheduleModel> listSchedules()
+	 public ResponseEntity<List<ScheduleModel>> listSchedules()
 	 {
 		 return new ResponseEntity<>( schedulerRepository.findAll(),HttpStatus.OK);
 	 }
