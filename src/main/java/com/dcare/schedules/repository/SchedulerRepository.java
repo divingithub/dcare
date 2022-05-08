@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import com.dcare.schedules.model.ScheduleModel;
 
-@Repository
+ 
 public interface SchedulerRepository extends JpaRepository<ScheduleModel, Integer> 
 {
 	
